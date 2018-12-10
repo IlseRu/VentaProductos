@@ -1,0 +1,166 @@
+<!DOCTYPE struts PUBLIC
+"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+"http://struts.apache.org/dtds/struts-2.0.dtd">
+<!--
+To change this license header, chooseregistrarMarca License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+
+
+<struts>
+    <constant name="struts.devMode" value="false"/>
+    <package name="default" extends="struts-default">
+        <action name="iniciarSesion" class="com.utez.controller.inicioSesion.InicioSesionAction" method="iniciarSesion">
+            <result name="usuario" type="redirectAction">
+                usuario
+            </result>
+            <result name="administrador" type="redirectAction">
+                administrador
+            </result>
+            <result name="error">/IniciarSesion.jsp</result>
+        </action>
+        
+        <action name="cerrarSesion" class="com.utez.controller.inicioSesion.InicioSesionAction" method="cerrarSesion">
+            <result name="success">/IniciarSesion.jsp</result>
+        </action>
+        
+          <action name="recuperacionContrasenia" class="mx.utez.modelo.actions.ActionRecuperacion" method="recuperacionContrasenia">
+                <result name="success">/IniciarSesion.jsp</result>
+            </action>
+    </package>
+    
+    <package name="privados" extends="struts-default,interpack">
+        <action name="administrador">
+            <result>/vistas/vistaAdmin/Inicio.jsp</result>
+        </action>
+        
+        <action name="usuario">
+            <result>/vistas/vistaEmpleado/Inicio.jsp</result>
+        </action>
+        
+        
+        <!--CRUD Empleado-->
+        <action name="registrarEmpleado" class="com.utez.controller.Empleado.empleadoAction" method="registrarEmpleado">
+            <result name="success" type="redirectAction">consultarEmpleado</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="consultarEmpleado" class="com.utez.controller.Empleado.empleadoAction" method="consultarEmpleado">
+            <result name="success">/vistas/vistaAdmin/vistaEmpleado/Empleado.jsp</result>
+        </action>
+        
+        <action name="consultarEmpleadoId" class="com.utez.controller.Empleado.empleadoAction" method="consultarEmpleadoId">
+            <result name="success">/vistas/vistaAdmin/vistaEmpleado/modificarEmpleado.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="modificarEmpleado" class="com.utez.controller.Empleado.empleadoAction" method="modificarEmpleado">
+            <result name="success" type="redirectAction">consultarEmpleado</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="eliminarEmpleado" class="com.utez.controller.Empleado.empleadoAction" method="eliminarEmpleado">
+            <result name="success" type="redirectAction">consultarEmpleado</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <!--CRUD Proveedor-->
+        <action name="agregarProveedor" class="com.utez.controller.proveedor.proveedorAction" method="agregarProveedor">
+            <result name="success" type="redirectAction">consultarProveedor</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="consultarProveedor" class="com.utez.controller.proveedor.proveedorAction" method="consultarProveedor">
+            <result name="success">/vistas/vistaAdmin/vistaProveedor/proveedor.jsp</result>
+        </action>
+        
+        <action name="consultaEspecificaProveedor" class="com.utez.controller.proveedor.proveedorAction" method="consultaEspecificaProveedor">
+            <result name="success">/vistas/vistaAdmin/vistaProveedor/ModificarProveedor.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="modificarProveedor" class="com.utez.controller.proveedor.proveedorAction" method="modificarProveedor">
+            <result name="success" type="redirectAction">consultarProveedor</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="eliminarProveedor" class="com.utez.controller.proveedor.proveedorAction" method="eliminarProveedor">
+            <result name="success" type="redirectAction">consultarProveedor</result>
+            <result name="error">/Error.jsp</result>
+        </action>       
+        
+        <!-- CRUD Anaquel-->
+        <action name="consultarAnaquel" class="com.utez.controller.Anaquel.anaquelAction" method="consultarAnaquel">
+            <result name="success">/vistas/vistaAdmin/vistaAnaquel/Anaquel.jsp</result>
+        </action>
+        
+        <action name="agregarAnaquel" class="com.utez.controller.Anaquel.anaquelAction" method="agregarAnaquel">
+            <result name="success" type="redirectAction">consultarAnaquel</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="eliminarAnaquel" class="com.utez.controller.Anaquel.anaquelAction" method="eliminarAnaquel">
+            <result name="success" type="redirectAction">consultarAnaquel</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="consultaEspecificaAnaquel" class="com.utez.controller.Anaquel.anaquelAction" method="consultaEspecificaAnaquel">
+            <result name="success">/vistas/vistaAdmin/vistaAnaquel/ModificarAnaquel.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        <action name="modificarAnaquel" class="com.utez.controller.Anaquel.anaquelAction" method="modificarAnaquel">
+            <result name="success" type="redirectAction">consultarAnaquel</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <!--CRUD grupo -->
+        <action name="consultarProducto" class="com.utez.controller.producto.productoAction" method="consultarProducto">
+            <result name="success">/vistas/vistaAdmin/vistaProducto/Producto.jsp</result>
+        </action>
+        
+        <action name="registroProducto" class="com.utez.controller.producto.productoAction" method="registroProducto">
+            <result name="success">/vistas/vistaAdmin/vistaProducto/AgregarProducto.jsp</result>
+        </action>
+        
+        <action name="agregarProducto" class="com.utez.controller.producto.productoAction" method="agregarProducto">
+            <result name="success" type="redirectAction">consultarProducto</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="eliminarProducto" class="com.utez.controller.producto.productoAction" method="eliminarProducto">
+            <result name="success" type="redirectAction">consultarProducto</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="consultaEspecificaProducto" class="com.utez.controller.producto.productoAction" method="consultaEspecificaProducto"> 
+            <result name="success">/vistas/vistaAdmin/vistaProducto/ModificarProducto.jsp</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+        <action name="modificarProducto" class="com.utez.controller.producto.productoAction" method="modificarProducto">
+            <result name="success" type="redirectAction">consultarProducto</result>
+            <result name="error">/Error.jsp</result>
+        </action>
+        
+    </package>
+    
+    <package name="interpack" extends="struts-default">
+        <interceptors>
+            <interceptor name="sesionValida" class="com.utez.utilerias.InterceptorSesion"/>
+            <interceptor-stack name="pilaInterceptores">
+                <interceptor-ref name="sesionValida"/>
+                <interceptor-ref name="defaultStack"/>
+            </interceptor-stack>
+            
+        </interceptors>
+        <default-interceptor-ref name="pilaInterceptores"/>
+        
+        <global-results>
+            <result name="noLogin">
+                <param name="location">/IniciarSesion.jsp</param>
+                <param name="status">401</param>
+            </result>
+        </global-results>              
+    </package>
+</struts>
